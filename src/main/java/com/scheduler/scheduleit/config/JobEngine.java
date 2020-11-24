@@ -71,7 +71,7 @@ public class JobEngine {
 				System.out.println("For " + job.getJob_id() + " " + job.getCron_expression());
 
 				threadPoolTaskScheduler.schedule(() -> {
-					exportToDatabaseService.exportData(job.getJob_id());
+					exportToDatabaseService.executeJob(job.getJob_id());
 				}, new CronTrigger(job.getCron_expression()));
 			}
 

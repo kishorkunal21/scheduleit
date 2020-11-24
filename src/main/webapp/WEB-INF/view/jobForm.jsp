@@ -16,6 +16,7 @@
 	window.onload = function() {
 		toggle('X');
 		schedulerFrequency(99);
+		displayPath(document.getElementById("job_type"))
 	}
 </script>
 <script type="text/javascript">
@@ -87,6 +88,13 @@
 		}
 
 	}
+	
+	function displayPath(obj){
+		if(obj.value==1)
+			document.getElementById("divPath").style.display ="block";
+		else
+			document.getElementById("divPath").style.display ="none";
+	}
 </script>
 
 </head>
@@ -103,7 +111,18 @@
 				<div class="col-sm-9">
 
 					<div class="card">
-						<h5 class="card-header">Jobs</h5>
+						<div class="d-flex card-header">
+								<div class="mr-auto">
+									<h5>Jobs</h5>
+								</div>
+								<div class="">
+									<a
+										href="<c:url value="/"/>">
+										<img src="icons/arrow-left-circle.svg" alt="" width="30"
+										height="30" title="Back" />
+									</a>
+								</div>
+							</div>
 						<div class="card-body">
 							<div class="container">
 								<div class="row">
@@ -167,7 +186,7 @@
 							</div>
 							<div class="container" id="divDaily" style="display: none">
 								<div class="row">
-									<div class="col-sm-4">
+									<div class="col-sm-3">
 										<div class="form-inline">
 											<label for="hours">Job to be executed at </label>
 										</div>
@@ -230,10 +249,27 @@
 									</div>
 									<div class="col-sm-6">
 										<div class="form-group">
-											<form:select path="job_type" class="form-control">
+											<form:select path="job_type" class="form-control" onchange="displayPath(this)">
 												<form:options items="${jobTypeList}" />
 											</form:select>
 
+										</div>
+									</div>
+								</div>
+							</div>
+							
+							<div class="container" id="divPath" style="display: none">
+								<div class="row">
+									<div class="col-sm-3">
+										<div class="form-group">
+											<label for="disabled" class="form-check-label">Export Path</label>
+										</div>
+									</div>
+									<div class="col-sm-6">
+										<div class="form-group">
+											<form:input path="export_path" type="text" id="export_path"
+												class="form-control"  placeholder=""
+												value="${job.export_path }" />
 										</div>
 									</div>
 								</div>

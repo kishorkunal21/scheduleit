@@ -21,52 +21,49 @@
 </script>
 <script type="text/javascript">
 	function connectionTypeToggle(val) {
-
-		if (document.getElementById("job_type").value == 3)
+		
+		if(document.getElementById("job_type").value==3)
 			document.getElementById("divTargetConnection").style.display = "block";
 		else
 			document.getElementById("divTargetConnection").style.display = "none";
-
+		
 		var job_name = document.getElementById("job_name").value;
 
 		if (val == 99)
 			val = document.getElementById("connection_typeDB").value;
 
-		if (val == 0) {
-			document.getElementById("connection_name").value = job_name
-					+ '_Source';
+		if (val == 0){
+			document.getElementById("connection_name").value = job_name	+ '_Source';
 			document.getElementById("divSourceDB").style.display = "block";
 			document.getElementById("divTargetDB").style.display = "none";
 		}
-
-		else if (val == 1) {
-			document.getElementById("connection_name_target").value = job_name
-					+ '_Target';
+			
+		else if (val == 1){
+			document.getElementById("connection_name_target").value = job_name	+ '_Target';
 			document.getElementById("divSourceDB").style.display = "none";
 			document.getElementById("divTargetDB").style.display = "block";
-
+			
 		}
 	}
 
 	function changeURL() {
-
-		if (document.getElementById("connection_id").value == 0) {
+		
+		if(document.getElementById("connection_id").value==0){
 			if (document.getElementById("connection_driver").value == 1)
 				document.getElementById("connection_url").value = 'jdbc:postgresql://localhost:5121/database_name';
 			else if (document.getElementById("connection_driver").value == 2)
 				document.getElementById("connection_url").value = 'jdbc:oracle://localhost:5121/database_name';
 			else if (document.getElementById("connection_driver").value == 3)
 				document.getElementById("connection_url").value = 'jdbc:mysql://localhost:5121/database_name';
-
+			
 			if (document.getElementById("connection_driver_target").value == 1)
 				document.getElementById("connection_url_target").value = 'jdbc:postgresql://localhost:5121/database_name';
 			else if (document.getElementById("connection_driver_target").value == 2)
 				document.getElementById("connection_url_target").value = 'jdbc:oracle://localhost:5121/database_name';
 			else if (document.getElementById("connection_driver_target").value == 3)
 				document.getElementById("connection_url_target").value = 'jdbc:mysql://localhost:5121/database_name';
-
-			if (document.getElementById("connection_url_target").value == ''
-					&& document.getElementById("connection_url").value == '') {
+			
+			if(document.getElementById("connection_url_target").value=='' && document.getElementById("connection_url").value==''){
 				document.getElementById("connection_url_target").value = 'jdbc:postgresql://localhost:5121/database_name';
 				document.getElementById("connection_url").value = 'jdbc:postgresql://localhost:5121/database_name';
 			}
@@ -102,30 +99,20 @@
 		modelAttribute="connections" name="jobForm">
 		<div class="container">
 			<div class="row justify-content-sm-center">
-
+			
 				<div class="col-sm-9">
-					<c:if test="${not empty message}">
-						<div class="alert alert-success" role="alert">
-							<a>${message} </a>
-							<button type="button" class="close" data-dismiss="alert"
-								aria-label="Close">
-								<span aria-hidden="true">&times;</span>
-							</button>
-						</div>
-					</c:if>
+				<c:if test="${not empty message}">
+					<div class="alert alert-success" role="alert">
+						<a>${message} </a>
+						<button type="button" class="close" data-dismiss="alert"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+				</c:if>
 					<div class="card">
-							<div class="d-flex card-header">
-								<div class="mr-auto">
-									<h5>Connections</h5>
-								</div>
-								<div class="">
-									<a
-										href="<c:url value="/jobconfig-database"/>">
-										<img src="icons/arrow-right-circle.svg" alt="" width="30"
-										height="30" title="Configure Task" />
-									</a>
-								</div>
-							</div>
+						<div class="card">
+							<h5 class="card-header">Connections </h5>
 							<div class="card-body">
 								<div class="container">
 									<div class="row">
@@ -146,8 +133,7 @@
 													value="${connections.connection_type }" />
 											</div>
 										</div>
-										<div class="col-sm-2" style="display: none"
-											id="divTargetConnection">
+										<div class="col-sm-2" style="display:none" id="divTargetConnection">
 											<div class="form-check">
 												<form:radiobutton path="connection_type"
 													id="radioConnectionType" value="1"
@@ -265,22 +251,20 @@
 
 								<!-- target database -->
 								<div id="divTargetDB" style="display: none">
-
-									<div class="container">
+								
+								<div class="container">
 										<div class="row">
 											<div class="col-sm-3">
 												<div class="form-group">
-													<label for="connection_name_target"
-														class="form-check-label">Connection Name</label>
+													<label for="connection_name_target" class="form-check-label">Connection
+														Name</label>
 												</div>
 											</div>
 											<div class="col-sm-9">
 												<div class="form-group">
 													<form:input path="connection_name_target" type="text"
-														class="form-control" id="connection_name_target"
-														placeholder=""
-														value="${connections.connection_name_target }"
-														readonly="true" />
+														class="form-control" id="connection_name_target" placeholder=""
+														value="${connections.connection_name_target }" readonly="true" />
 
 												</div>
 											</div>
@@ -383,7 +367,7 @@
 												<label for="disabled" class="form-check-label">Disabled</label>
 											</div>
 										</div>
-										<div class="col-sm-2">
+										<div class="col-sm-9">
 											<div class="form-group">
 												<form:hidden path="disabled" id="disabled"
 													value="${connections.disabled}" />
@@ -415,14 +399,14 @@
 										</div>
 										<div class="col-sm-6">
 											<div class="form-group">
-												<input type="submit" id="TestConnection"
-													name="TestConnection" class="btn-light btn-lg btn-block"
-													value="Test Connection">
+												<input type="submit" id="TestConnection" name="TestConnection"
+													class="btn-light btn-lg btn-block" value="Test Connection">
 											</div>
 										</div>
 									</div>
 								</div>
 							</div>
+						</div>
 					</div>
 
 

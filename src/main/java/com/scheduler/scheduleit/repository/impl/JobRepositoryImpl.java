@@ -103,6 +103,7 @@ public class JobRepositoryImpl implements JobRepository {
 	public int getMaxId(String table_name, String column_name) {
 		int count = 0;
 		try {
+			System.out.println("select max(" + column_name + ") from " + table_name + "");
 			count = jdbcTemplate.queryForObject("select max(" + column_name + ") from " + table_name + "",
 					Integer.class);
 		} catch (Exception e) {

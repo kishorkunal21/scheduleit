@@ -2,11 +2,11 @@ package com.scheduler.scheduleit.repository;
 
 import java.util.List;
 
+import org.springframework.jdbc.core.JdbcTemplate;
+
 import com.scheduler.scheduleit.domain.Connections;
 
 public interface ConnectionsRepository {
-
-	int getMaxId(String table_name, String column_name);
 
 	List<Connections> getConnectionsById(int job_id);
 
@@ -17,4 +17,8 @@ public interface ConnectionsRepository {
 	String updateConnection(Connections job);
 
 	String testConnection(Connections connections, int connection_type);
+
+	JdbcTemplate getSourceConnection(Connections connections);
+
+	JdbcTemplate getTargetConnection(Connections connections);
 }
