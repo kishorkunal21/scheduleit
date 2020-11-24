@@ -120,6 +120,7 @@
 										href="<c:url value="/"/>">
 										<img src="icons/arrow-left-circle.svg" alt="" width="30"
 										height="30" title="Back" />
+										
 									</a>
 								</div>
 							</div>
